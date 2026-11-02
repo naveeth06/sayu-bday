@@ -274,8 +274,7 @@
     }
 
     try {
-      if (demoMode) window.sessionStorage.setItem("bday-preview", "1");
-      else window.localStorage.setItem("bday-unlocked", "1");
+      if (!demoMode) window.localStorage.setItem("bday-unlocked-v2", "1");
     } catch (error) {
       /* the clock has passed anyway */
     }

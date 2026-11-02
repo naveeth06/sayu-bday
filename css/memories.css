@@ -1,0 +1,298 @@
+/* ---------- the memory album ---------- */
+
+.memories-section {
+  position: relative;
+  z-index: 1;
+  padding: clamp(2rem, 5vw, 4rem) 0;
+}
+
+.memory-stage {
+  position: relative;
+  display: grid;
+  align-items: center;
+  min-height: 100svh;
+  overflow: hidden;
+  perspective: 1400px;
+}
+
+.memory {
+  display: grid;
+  align-items: center;
+  gap: clamp(2rem, 6vw, 6rem);
+  width: min(1120px, calc(100% - 2 * var(--gutter)));
+  margin-inline: auto;
+}
+
+.memory-media {
+  position: relative;
+  min-width: 0;
+  width: 100%;
+  height: min(67svh, 690px);
+  min-height: 350px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(230, 199, 159, 0.24);
+  border-radius: 4px;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(227, 166, 169, 0.15), transparent 68%),
+    #120d1b;
+  box-shadow: 0 35px 100px -50px rgba(0, 0, 0, 0.95);
+  will-change: transform, opacity, filter;
+}
+
+.memory-media img,
+.memory-media video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.memory-media video {
+  object-fit: contain;
+  background: #0d0817;
+}
+
+.memory:nth-child(1) .memory-media img {
+  object-position: center 76%;
+}
+
+.memory:nth-child(3) .memory-media img {
+  object-position: center 60%;
+}
+
+.memory-photo-note {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(245, 238, 229, 0.22);
+  background: rgba(8, 6, 17, 0.62);
+  color: var(--ivory-dim);
+  font-size: var(--t-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+}
+
+.memory-copy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 33rem;
+  will-change: transform, opacity;
+}
+
+.memory-copy .eyebrow {
+  margin-bottom: clamp(1.2rem, 2.5vw, 2rem);
+  color: var(--gold);
+}
+
+.memory-title {
+  max-width: 11ch;
+  margin: 0 0 1.3rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 5rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--ivory);
+}
+
+.memory-message {
+  max-width: 44ch;
+  margin: 0;
+  font-size: clamp(1rem, 1.15vw, 1.18rem);
+  line-height: 1.9;
+  color: var(--ivory-dim);
+}
+
+.memory-ornament {
+  margin-top: clamp(1.4rem, 3vw, 2.4rem);
+  color: var(--gold);
+  opacity: 0.72;
+}
+
+.memory-status {
+  min-height: 1.2em;
+  margin: 1rem auto 0;
+  color: var(--ivory-faint);
+  text-align: center;
+  font-size: var(--t-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.memory-noscript {
+  max-width: 40ch;
+  margin: 2rem auto;
+  color: var(--ivory-dim);
+  text-align: center;
+}
+
+.memories-enhanced {
+  padding: 0;
+}
+
+.memories-enhanced .memory-stage {
+  display: block;
+  min-height: 100svh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.memories-enhanced .memory {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+  gap: clamp(2.5rem, 7vw, 7rem);
+  align-items: center;
+  width: min(1200px, calc(100% - 2 * var(--gutter)));
+  height: 100%;
+  pointer-events: none;
+}
+
+.memories-enhanced .memory--reverse {
+  grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.15fr);
+}
+
+.memories-enhanced .memory--reverse .memory-media {
+  order: 2;
+}
+
+.memories-enhanced .memory--reverse .memory-copy {
+  order: 1;
+  justify-self: end;
+}
+
+.memories-enhanced .memory-media {
+  height: min(70svh, 700px);
+  min-height: 0;
+}
+
+.memories-enhanced .memory-copy {
+  padding-block: 2rem;
+}
+
+.memories-static .memory-stage {
+  display: grid;
+  gap: clamp(3rem, 8vw, 8rem);
+  min-height: 0;
+  overflow: visible;
+}
+
+.memories-static .memory {
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+  padding-block: clamp(2rem, 6vw, 5rem);
+}
+
+.memories-static .memory:nth-child(even) .memory-media {
+  order: 2;
+}
+
+.memories-static .memory:nth-child(even) .memory-copy {
+  order: 1;
+}
+
+@media (max-width: 760px) {
+  .memory-stage {
+    min-height: 0;
+  }
+
+  .memory,
+  .memories-static .memory {
+    grid-template-columns: 1fr;
+    gap: 1.7rem;
+  }
+
+  .memory-media {
+    height: min(56svh, 520px);
+    min-height: 300px;
+  }
+
+  .memory-title {
+    font-size: clamp(2.2rem, 11vw, 3.8rem);
+  }
+
+  .memories-enhanced .memory-stage {
+    height: 100svh;
+    min-height: 100svh;
+  }
+
+  .memories-enhanced .memory,
+  .memories-enhanced .memory--reverse {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    align-content: center;
+    gap: clamp(1rem, 3svh, 2rem);
+    width: calc(100% - 2 * clamp(1.25rem, 5vw, 2rem));
+    padding-block: calc(var(--nav-h) + 0.5rem) 1rem;
+  }
+
+  .memories-enhanced .memory--reverse .memory-media,
+  .memories-enhanced .memory--reverse .memory-copy {
+    order: initial;
+  }
+
+  .memories-enhanced .memory-media {
+    height: 100%;
+    min-height: 0;
+    max-height: 48svh;
+  }
+
+  .memories-enhanced .memory-copy {
+    align-self: start;
+    padding-block: 0.2rem;
+  }
+
+  .memories-enhanced .memory-copy .eyebrow {
+    margin-bottom: 0.7rem;
+  }
+
+  .memories-enhanced .memory-title {
+    margin-bottom: 0.6rem;
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
+  }
+
+  .memories-enhanced .memory-message {
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .memories-enhanced .memory-ornament {
+    margin-top: 0.7rem;
+  }
+}
+
+@media (max-width: 760px) and (max-height: 740px) {
+  .memories-enhanced .memory-media {
+    max-height: 36svh;
+  }
+
+  .memories-enhanced .memory {
+    gap: 0.7rem;
+  }
+
+  .memories-enhanced .memory-title {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+  }
+
+  .memories-enhanced .memory-message {
+    font-size: 0.84rem;
+    line-height: 1.42;
+  }
+
+  .memories-enhanced .memory-ornament {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .memory-media,
+  .memory-copy {
+    will-change: auto;
+  }
+}

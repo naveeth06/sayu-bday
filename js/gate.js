@@ -20,7 +20,7 @@
   var stored = false;
 
   try {
-    stored = window.localStorage.getItem("bday-unlocked") === "1";
+    stored = window.localStorage.getItem("bday-unlocked-v2") === "1";
   } catch (error) {
     // stored = false;
   }
@@ -35,32 +35,16 @@
 
   if (open) {
     try {
-      window.localStorage.setItem("bday-unlocked", "1");
+      window.localStorage.setItem("bday-unlocked-v2", "1");
     } catch (error) {
       /* storage can be unavailable, the date check still works */
     }
     return;
   }
 
-  /* owner preview: ?preview on any page, remembered for this tab */
+  /* Owner preview is explicit and applies only to this URL. */
   var preview = /[?&]preview(?:[=&]|$)/.test(window.location.search);
-
-  if (preview) {
-    try {
-      window.sessionStorage.setItem("bday-preview", "1");
-    } catch (error) {
-      /* no storage, this page load is still allowed */
-    }
-    return;
-  }
-
-  try {
-    if (window.sessionStorage.getItem("bday-preview") === "1") {
-      return;
-    }
-  } catch (error) {
-    /* ignore */
-  }
+  if (preview) return;
 
   /* never redirect the lock screen into itself */
   if (/lock\.html?$/i.test(window.location.pathname)) return;
